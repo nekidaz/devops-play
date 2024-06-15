@@ -1,18 +1,12 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
+apiVersion: v1
+kind: Service
 metadata:
-  name: nginx-app
-  namespace: argocd  # Пространство имен, где развертывается Argo CD
+  name: my-go-app-service
 spec:
-  project: default  # Проект Argo CD, к которому относится приложение
-  source:
-    repoURL: https://github.com/nekidaz/devops-play.git  # URL вашего Git репозитория
-    targetRevision: main  # Ветка или тег для развертывания
-    path: .  # Путь к манифестам Kubernetes в репозитории (в этом случае используем текущий каталог)
-  destination:
-    server: https://kubernetes.default.svc  # Адрес вашего Kubernetes API сервера
-    namespace: default  # Пространство имен Kubernetes, куда развертывается приложение
-  syncPolicy:
-    automated:
-      prune: true  # Включить автоматическое удаление ресурсов Kubernetes, которые отсутствуют в Git
-      selfHeal: true  # Включить функцию самовосстановления в случае сбоя
+  selector:
+    app: my-go-app
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: NodePort
