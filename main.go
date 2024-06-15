@@ -5,7 +5,7 @@ import "net/http"
 func main() {
 	server := http.NewServeMux()
 	server.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Hello, DUDU!"))
+		w.Write([]byte("Hello, вш!"))
 	})
 	http.ListenAndServe(":8080", server)
 }
