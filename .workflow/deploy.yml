@@ -22,8 +22,8 @@ jobs:
     - name: Build and push Docker image
       run: |
         IMAGE_TAG=${{ github.sha }}
-        docker buildx build --push --tag your-dockerhub-username/your-image-name:${IMAGE_TAG} .
-        docker buildx build --push --tag your-dockerhub-username/your-image-name:latest .
+        docker buildx build --push --tag gudetxma/kube-play:${IMAGE_TAG} .
+        docker buildx build --push --tag gudetxma/kube-play:latest .
 
     - name: Logout from Docker Hub
       run: docker logout
